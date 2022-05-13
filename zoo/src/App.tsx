@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { toggleList } from './storage/ToggleListOfAnimals';
 import { Animal } from './components/Animal';
 import { Animals } from './components/Animals';
 import { NotFound } from './components/NotFound';
@@ -8,6 +9,7 @@ import { Layout } from './components/Layout';
 
 
 function App() {
+  toggleList();
   return (
     <BrowserRouter>
      <Routes>
