@@ -26,7 +26,7 @@ export const Animal = () => {
     let lastFed: Date;
 
     let theAnimal: IAnimal = animalList.filter(function (thisAnimal) {
-        return thisAnimal.id.toString() == params.id;
+        return thisAnimal.id.toString() === params.id;
     })[0];
     const index: number = animalList.findIndex(i => i.id === theAnimal.id);
 
