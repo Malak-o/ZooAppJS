@@ -34,7 +34,7 @@ export const Animal = () => {
     useEffect(() => {
         setAnimal(theAnimal);
         lastFed = getDateFromStorage(lastFed, theAnimal);
-        setTime(lastAte);
+        setTime(lastFed);
 
         console.log(now.valueOf() - lastFed.valueOf());
         if (now.valueOf() - lastFed.valueOf() > 3600000 * 2) {
@@ -46,7 +46,7 @@ export const Animal = () => {
 
 
     const feed = () => {
-        if(!isNumericLiteral.isFed) {
+        if(!animal.isFed) {
             setAnimal({ ...animal, isFed: true, lastFed: new Date() });
             setTime(new Date());
             animalList[index].isFed = true;
