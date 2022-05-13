@@ -13,19 +13,19 @@ img {
 
 .container p {
     color: black;
-    margin: 5px;
+    margin: 10px;
 }
 
 .container h5 {
     color: black;
-    margin: 5px;
+    margin: 10px;
 }
 
 .img-container {
     width: 300px;
-    border-radius: 5px;
-    background-color: beige;
-    box-shadow: 2.5px 2.5px 5px rbg(212, 212, 212);
+    border-radius: 10px;
+    background-color: lightblue;
+    box-shadow: 2.5px 2.5px 5px rbg(210, 210, 210);
 }
 
 a {

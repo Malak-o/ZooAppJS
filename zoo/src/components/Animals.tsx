@@ -20,7 +20,7 @@ export const Animals = () => {
 
     return (
         <>
-        <h1>ZOO</h1>
+        <h1> ~~~ | The animal Park, Zoo | ~~~ </h1>
         <div className='container'>{
             animals.map((animal) => {
                 lastEat = getDateFromStorage(lastEat, animal);
@@ -33,7 +33,7 @@ export const Animals = () => {
                     return (
                         <div key={animal.id} className='img-container'>
                             <Link to={"/animal/" + animal.id}>
-                                <h3>{animal.name} (needs to be fed)</h3>
+                                <h3>{animal.name} (Needs to be fed)</h3>
                                 <img src={animal.imageUrl} alt={animal.latinName} />
                                 <p>{animal.shortDescription}</p>
                             </Link>
