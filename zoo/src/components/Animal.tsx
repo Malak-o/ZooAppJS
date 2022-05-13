@@ -3,7 +3,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { animalList, getDateFromStorage, now } from '../storage/ToggleListOfAnimals';
 import { useParams } from 'react-router-dom'
 import { IAnimal } from '../models/IAnimal';
-import { isLabeledStatement, isNumericLiteral } from 'typescript';
 
 export const Animal = () => {
     const [animal,setAnimal] = useState<IAnimal>({
@@ -23,7 +22,7 @@ export const Animal = () => {
     const [time, setTime] = useState<Date>(new Date())
 
     let params = useParams();
-    let lastFed: Date;
+    let lastEat: Date;
 
     let theAnimal: IAnimal = animalList.filter(function (thisAnimal) {
         return thisAnimal.id.toString() === params.id;
@@ -33,11 +32,11 @@ export const Animal = () => {
 
     useEffect(() => {
         setAnimal(theAnimal);
-        lastFed = getDateFromStorage(lastFed, theAnimal);
-        setTime(lastFed);
+        lastEat = getDateFromStorage(lastEat, theAnimal);
+        setTime(lastEat);
 
-        console.log(now.valueOf() - lastFed.valueOf());
-        if (now.valueOf() - lastFed.valueOf() > 3600000 * 2) {
+        console.log(now.valueOf() - lastEat.valueOf());
+        if (now.valueOf() - lastEat.valueOf() > 3600000 * 3) {
             animalList[index].isFed = false;
             localStorage.setItem('listOfAnimals', JSON.stringify(animalList));
             return;

@@ -5,12 +5,11 @@ import { animalList, getDateFromStorage, now } from '../storage/ToggleListOfAnim
 import { IAnimal } from '../models/IAnimal'
 import '../styles/animals.css'
 
-/* https://animals.azurewebsites.net/api/animals" */
 
 export const Animals = () => {
-    const [ animals, setAnimals ] = useState<IAnimals[]>([]);
+    const [ animals, setAnimals ] = useState<IAnimal[]>([]);
     let hungryAnimal: boolean;
-    let lastFed: Date; 
+    let lastEat: Date; 
     let itsSameDay: boolean; 
     let lastFedTimeAgo: number; 
 
@@ -24,18 +23,19 @@ export const Animals = () => {
         <h1>ZOO</h1>
         <div className='container'>{
             animals.map((animal) => {
+                lastEat = getDateFromStorage(lastEat, animal);
+                lastFedTimeAgo = now.valueOf() - lastEat.valueOf();
+                itsSameDay =  lastEat.getUTCDate() == now.getUTCDate();
                 hungryAnimal = lastFedTimeAgo >= 3600000 * 4;
-                lastFed = getDateFromStorage(lastFed, animal);
-                itsSameDay =  lastFed.getUTCDate() == now.getUTCDate();
-                lastFedTimeAgo = now.valueOf() - lastFed.valueOf();
+
 
                 if ( hungryAnimal) {
                     return (
                         <div key={animal.id} className='img-container'>
                             <Link to={"/animal/" + animal.id}>
-                                <h3>{animals.name} (needs to be fed)</h3>
-                                <img src={animal.imageURL} alt={animals.latinName} />
-                                <p>{animals.shortDescription}</p>
+                                <h3>{animal.name} (needs to be fed)</h3>
+                                <img src={animal.imageUrl} alt={animal.latinName} />
+                                <p>{animal.shortDescription}</p>
                             </Link>
                         </div>
                     )
@@ -43,8 +43,8 @@ export const Animals = () => {
                     return (
                         <div key={animal.id} className='img-container'>
                             <Link to={"/animal/" + animal.id}>
-                                <h3>{animals.name}</h3>
-                                <img src={animal.imageURL} alt={animal.latinName} />
+                                <h3>{animal.name}</h3>
+                                <img src={animal.imageUrl} alt={animal.latinName} />
                                 <p>{animal.shortDescription}</p>
                             </Link>
                         </div>
